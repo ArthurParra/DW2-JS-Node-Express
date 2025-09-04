@@ -14,7 +14,7 @@ const carro = {
   },
 };
 
-// exibindo as propriedades do objeto:
+// exibindo as propriedades do objeto
 document.write(`<p>o modelo do carro é ${carro.modelo} </p>`);
 document.write(`<p>a cor do carro é ${carro.cor} </p>`);
 document.write(`<p>${carro.acelerar()}</p>`);
