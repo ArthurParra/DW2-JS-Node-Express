@@ -2,25 +2,24 @@ const express = require("express"); //importando o Express (framework):
 
 const app = express(); //Iniciando o Express na vaiavel "APP":
 
-
 // configurando o EJS:
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 
 //criando a primeira rota do site (rota principal):
 // REQ = trata a REQUISIÇÂO
 // RES = trata a RESPOSTA
 app.get("/", (req, res) => {
-  res.render("index")
+  res.render("index");
 });
 
 // ROTA de produtos
 app.get("/produtos", (req, res) => {
-  res.send(`<h1>Bem-vindo a pagina de Produtos!</h1>`);
+  res.render("produtos");
 });
 
 // criando a rota de clientes
 app.get("/clientes", (req, res) => {
-  res.send(`<h1>Bem-vindos a pagina de Clientes!</h1>`);
+  res.render("clientes");
 });
 
 //Iniciando o servidor HTTP
