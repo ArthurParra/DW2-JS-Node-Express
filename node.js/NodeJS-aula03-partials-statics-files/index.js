@@ -45,11 +45,16 @@ app.get("/clientes", (req, res) => {
       endereco: "Rua Marcelo Gomes, 231",
     },
     {
-      nome: "Mattew",
+      nome: "Matt",
       CPF: "879.768.435-87",
       endereco: "Rua Pindamonhngaba, 600",
     },
-    { nome: "Raviel", CPF: "132.542.645-11", endereco: "Rua Lero Covas, 32" },
+    { nome: "Ravi", CPF: "132.542.645-11", endereco: "Rua Lero Covas, 32" },
+    {
+      nome: "Ingrid",
+      CPF: "243.645.234-87",
+      endereco: "Rua Marcelo Barros, 534",
+    }
   ];
   res.render("clientes", {
     clientes: clientes,
@@ -57,9 +62,12 @@ app.get("/clientes", (req, res) => {
 });
 
 //rota de perfil
-app.get("/perfil", (req, res) => {
+// :user -> É um parametro da rota (OBRIGATORIO)
+// :user? -> É um parametro da rota (OPCIONAL)
+app.get("/perfil/:user", (req, res) => {
   //criando a variavel que sera enviada para a pagina
-  const user = "Tutuzinho";
+  const user = req.params.user
+  
   res.render("perfil", {
     //enviando variavei para a pagina:
     user: user,
