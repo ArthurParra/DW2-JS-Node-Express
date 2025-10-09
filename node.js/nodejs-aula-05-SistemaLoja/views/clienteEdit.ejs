@@ -7,19 +7,61 @@
             </div>
             <div class="card-body">
                 <!-- formulario de edição -->
-                <form action="" method="POST">
-                    <label for="">Nome do cliente:</label>
-                    <input type="text" name="nome" placeholder="Insira o nome do cliente" class="form-control" required
-                    value="<%= cliente.nome %>">
-                    <label for="">CPF do cliente:</label>
-                    <input type="text" name="cpf" placeholder="Insira o CPF do cliente" class="form-control" required
-                    value="<%= cliente.cpf %>">
-                    <label for="">Endereco do cliente:</label>
-                    <input type="text" name="endereco" placeholder="Insira o Endereço do cliente" class="form-control mb-4" required
-                    value="<%= cliente.endereco %>">
-                    <input type="submit" class="btn btn-success" value="Alterar">
-                    <input type="reset" class="btn btn-danger" value="Limpar">
-                    </form>
+                <form action="/clientes/update" method="POST">
+                    
+                    <input 
+                    type="hidden"
+                    name="id"
+                    value="<%= cliente.id %>"
+                    >
+                    <label for="">
+                        Nome do cliente:
+                    </label>
+                    <input 
+                    type="text" 
+                    name="nome" 
+                    placeholder="Insira o nome do cliente" 
+                    class="form-control" 
+                    required
+                    value="<%= cliente.nome %>"
+                    >
+                    
+                    <label>
+                        CPF do cliente:
+                    </label>
+                    <input 
+                    type="text" 
+                    name="cpf" 
+                    placeholder="Insira o CPF do cliente" 
+                    class="form-control" 
+                    required
+                    value="<%= cliente.cpf %>"
+                    >
+
+                    <label>
+                        Endereco do cliente:
+                    </label>
+                    <input 
+                    type="text" 
+                    name="endereco" 
+                    placeholder="Insira o Endereço do cliente" 
+                    class="form-control mb-4" 
+                    required
+                    value="<%= cliente.endereco %>"
+                    >
+
+                    <input 
+                    onclick="return confirm('Confirma as alterações realizadas para o cliente <%= cliente.nome %>?')" 
+                    type="submit" 
+                    class="btn btn-warning" 
+                    value="Alterar"
+                    >
+
+                    <a href="/clientes">
+                        <input type="reset" class="btn btn-danger" value="Cancelar">
+                    </a>
+                    
+                </form>
             </div>
         </div>
     </div>
