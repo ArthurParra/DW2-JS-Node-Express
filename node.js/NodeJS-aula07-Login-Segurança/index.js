@@ -8,6 +8,8 @@ import connection from "./config/sequelize-config.js";
 import ClientesController from "./controllers/ClientesController.js";
 import PedidosController from "./controllers/PedidosController.js";
 import ProdutosController from "./controllers/ProdutosController.js";
+import UserController from "./controllers/UserController.js";
+
 
 //importando as Models
 import Cliente from "./models/Cliente.js";
@@ -60,6 +62,7 @@ app.use(express.json());
 app.use("/", ClientesController);
 app.use("/", PedidosController);
 app.use("/", ProdutosController);
+app.use("/", UserController);
 
 // ROTA PRINCIPAL
 app.get("/", function (req, res) {
