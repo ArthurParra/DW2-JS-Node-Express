@@ -2,6 +2,10 @@
 import express from "express";
 // Iniciando o Express
 const app = express();
+
+//importando o express session (gerador de sessões)
+import session from "express-session";
+
 // Importando o Sequelize
 import connection from "./config/sequelize-config.js";
 // Importando os Controllers
@@ -10,12 +14,21 @@ import PedidosController from "./controllers/PedidosController.js";
 import ProdutosController from "./controllers/ProdutosController.js";
 import UserController from "./controllers/UserController.js";
 
-
 //importando as Models
 import Cliente from "./models/Cliente.js";
 import Pedido from "./models/Pedido.js";
 //importando os relacionamentos
 import defineAssociations from "./config/associations.js";
+
+//configurando o express session
+app.use(
+  session({
+    secret: "minhalojasecret",
+    cookie: { maxAge: 3600000 }, // sessão expira em uma hora
+    saveUninitialized: false,
+    resave: false,
+  })
+);
 
 // Realizando a conexão com o banco de dados
 connection
@@ -35,21 +48,22 @@ connection
   })
   .catch((error) => {
     console.log(error);
-});
+  });
 
 // invocando a função que cria os relacionamentos
-defineAssociations()
+defineAssociations();
 
 //Sincronizando as tabelas com os relacionamentos
 Promise.all([
-    Cliente.sync({force: false}), //TRUE uma vez depois false
-    Pedido.sync({force: false}), //TRUE uma vez depois false
-]).then(() => {
+  Cliente.sync({ force: false }), //TRUE uma vez depois false
+  Pedido.sync({ force: false }), //TRUE uma vez depois false
+])
+  .then(() => {
     console.log("Tabelas sincronizadas com sucesso!");
-}).catch((error) => {
-    console.log("Erro na criação das tabelas: ", error)
-});
-
+  })
+  .catch((error) => {
+    console.log("Erro na criação das tabelas: ", error);
+  });
 
 // Define o EJS como Renderizador de páginas
 app.set("view engine", "ejs");
