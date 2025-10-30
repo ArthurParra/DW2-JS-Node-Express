@@ -8,12 +8,16 @@ import { where } from "sequelize";
 
 // ROTA de login
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", {
+    hasNoSession: true,
+  });
 });
 
 // ROTA de cadastro
 router.get("/cadastro", (req, res) => {
-  res.render("cadastro");
+  res.render("cadastro", {
+    hasNoSession: true,
+  });
 });
 
 // ROTA de criação de usuario
